@@ -231,12 +231,15 @@ var polyClip = new function () {
 	}
 }
 
+
 // Minimizes FOUC in newer browsers. If older browsers that don't understand
 // attribute selectors, add a class of polyClip to the images you are clipping.
 document.write('<style type="text/css">img[data-polyclip], img.polyClip { visibility: hidden; }</style>')
 
-if (polyClip.isOldIE) {
-	$(window).bind('load', polyClip.init);
-} else {
-	$(document).ready(polyClip.init);
-}
+(function ($) {
+	if (polyClip.isOldIE) {
+		$(window).bind('load', polyClip.init);
+	} else {
+		$(document).ready(polyClip.init);
+	}
+})(jQuery);
